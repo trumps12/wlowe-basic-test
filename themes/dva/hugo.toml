@@ -1,0 +1,57 @@
+baseURL = 'https://dva-art.com/home'
+languageCode = 'en-us'
+title = 'DVArt'
+
+# needed to  render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+
+[[menus.main]]
+name = 'Home'
+pageRef = '/home'
+weight = 10
+
+[[menus.main]]
+name = 'Posts'
+pageRef = '/posts'
+weight = 20
+
+[[menus.main]]
+name = 'Portfolio'
+pageRef = '/portfolio'
+weight = 25
+
+[[menus.main]]
+name = 'Birds'
+parent = 'Portfolio'
+pageRef = '/portfolio/birds'
+weight = 10
+
+[[menus.main]]
+name = 'Landscapes'
+parent = 'Portfolio'
+pageRef = '/portfolio/landscapes'
+weight = 10
+
+[[menus.main]]
+name = 'About'
+pageRef = '/about'
+weight = 30
+
+[[menus.main]]
+name = 'Tags'
+pageRef = '/tags'
+weight = 40
+
+[[menus.main]]
+name = 'readme'
+pageRef = '/readme'
+weight = 100
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.116.0"

@@ -1,0 +1,13 @@
+{{- $text := .Text }}
+{{- $parts := split .Text "|"}}
+{{- $isClass := hasPrefix $text "." }}
+{{- $hasMeta := eq (len $parts) 2}}
+{{- $class := ""}}
+{{- if and $isClass $hasMeta }}
+    {{- $class = index $parts 0 | strings.TrimLeft "." }}
+    {{- $text = index $parts 1 }}
+{{ end }}
+<div class="figure{{ with $class }} {{. | safeHTMLAttr }}{{ end }}"> {{/* Need block element here to prevent DOM issues with an <a/> nested in <p/> with block element children */}}
+    {{ partial "figure.html" (dict "page" .Page "src" .Destination "alt" $text "caption" $text "width" 200) }}
+</div>
+

@@ -1,0 +1,36 @@
+@import 'normalize';
+@import 'header';
+@import 'footer';
+@import 'photoswipe';
+@import 'gallery';
+@import 'carousel';
+// @import 'tiny2';
+
+body {
+  display: flex;
+  flex-direction: column;
+  color: #222;
+  line-height: 1.5;
+  height: 100vh;
+
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+main {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.wrapper {
+  max-width: 768px;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+a {
+  color: #00e;
+  text-decoration: none;
+}

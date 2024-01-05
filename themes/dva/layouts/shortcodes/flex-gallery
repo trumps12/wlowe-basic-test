@@ -1,0 +1,39 @@
+<!doctype html>
+<title>Example</title>
+ <style>
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .cards img {
+    margin: 10px;
+    border: 3px solid #2b2a2a;
+    box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3); 
+    max-width: 10vw;
+  }
+
+</style> 
+<main class="cards">
+
+    {{ $image := resources.Get "/imgs/godwit2.jpg" }}
+
+    {{/*  =========needs <a> tag to trigger lightbox.  WORKs but have not passed captions and css style for lightbox================  */}}
+      
+    <a href="{{$image.Permalink | safeHTMLAttr }}">
+    <img src="{{ $image.RelPermalink }}" alt="" caption="Zero" >
+    </a>
+  {{ $image := resources.Get "/imgs/godwit4.jpg" }}
+    <img src="{{ $image.RelPermalink }}" alt="" caption="1">
+  {{ $image := resources.Get "/imgs/godwit6.jpg" }}
+    <img src="{{ $image.RelPermalink }}" alt="" caption="2" >
+    {{ $image := resources.Get "/imgs/whitefacedheron.jpg" }}
+    <img src="{{ $image.RelPermalink }}" alt="" caption="3">
+  {{ $image := resources.Get "/imgs/dancing-pied-stilts.jpg" }}
+    <img src="{{ $image.RelPermalink }}" alt="">
+    {{ $image := resources.Get "/imgs/lake-reflection.jpg" }}
+    <img src="{{ $image.RelPermalink }}" alt="" caption="Lake Reflection">
+
+
+
+  </main>

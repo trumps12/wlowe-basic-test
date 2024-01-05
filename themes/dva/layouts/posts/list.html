@@ -1,0 +1,33 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{/*  {{ .Content }}  */}}
+  {{ range .Pages }}
+    <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+<p>
+     {{/*  =========  gets cover image to add to summary========  */}}
+     {{ with .Resources.GetMatch "cover.jpg" }}
+     {{ with .Resize "100x" }}
+      <img src="{{ .RelPermalink }}"> 
+     {{ end }}
+     
+{{ end }}
+     {{/*  ======end cover image=======  */}}
+    
+
+{{/*  ==============summary code from https://yihui.org/en/2017/08/hugo-post-summary/ =========  */}}
+{{ with .Description }}
+  {{ $.Scratch.Set "summary" (markdownify .) }}
+{{ else }}
+  {{ $.Scratch.Set "summary" ((delimit (findRE "(?s)(<p.*?>.*?</p>)" .Content) "[&hellip;] ") | plainify | truncate (default 200 $.Site.Params.summary_length) (default " &hellip;" $.Site.Params.text.truncated ) | replaceRE "&amp;" "&" | safeHTML) }}
+{{ end }}
+{{ $.Scratch.Get "summary" }}
+
+{{/*  ========= end of summary code===-==  */}}
+
+
+{{/*  ============default sumary code==========  did NOT get the sumamry--------------  */}}
+    {{/*  {{ .Summary }}  */}}
+  </p>
+  {{ end }}
+{{ end }}
+

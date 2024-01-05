@@ -1,0 +1,30 @@
+{{- $src := .src}}
+{{- $alt := .alt }}
+{{- $title := .title }}
+{{- $caption := .caption }}
+{{- $class := .class}}
+{{- $img := .page.Resources.GetMatch $src }}
+{{- $aspectRatio := div (float $img.Height) $img.Width }}
+{{- $width := .width}}
+{{- $height := .height}}
+{{- if and (not $width) $height }}
+    {{- $width = div $height $aspectRatio }}
+{{- end }}
+{{- if not $width}}
+    {{- $width = 768 }}
+{{- end }}
+{{- if not $height }}
+    {{- $height = mul $width $aspectRatio }}
+{{- end }}
+{{- $thumb := $img.Fill (printf "%dx%d" (int $width) (int $height)) }}
+<a href="{{$img.Permalink | safeHTMLAttr }}" itemprop="contentUrl" data-pswp-width="{{ $img.Width | safeHTMLAttr }}" data-pswp-height="{{ $img.Height | safeHTMLAttr }}" {{ with $class }}class="{{. | safeHTMLAttr }}"{{ end }}>
+    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <img itemprop="thumbnail" src="{{ $thumb.Permalink | safeURL }}" {{ with $alt | default ($caption) | default $thumb.Permalink }}alt="{{. | safeHTMLAttr }}"{{ end }}/>
+        {{- if or $title $caption}} 
+        <figcaption>
+            {{- with $title }}<h4>{{ . | safeHTML }}</h4>{{ end }}
+            {{- with $caption }}<p>{{ . | safeHTML }}</p>{{- end }}
+        </figcaption>
+        {{- end }}
+    </figure>
+</a>

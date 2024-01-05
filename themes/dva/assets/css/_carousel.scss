@@ -1,0 +1,99 @@
+
+.carousel {
+  position: relative;
+}
+
+.carousel-slides {
+  overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
+
+  max-height: 75vh;
+  
+  height: min-content;
+
+  scroll-snap-type: x mandatory;
+  scroll-snap-points-y: repeat(100%);
+  scroll-behavior: smooth;
+  background: gray;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-slides::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.carousel-slides > a {
+  position: relative;
+  min-width: 100%;
+  height: min-content;
+  list-style: none;
+  background: center center / cover no-repeat;
+  scroll-snap-align: start;
+}
+
+.carousel ol {
+  position: absolute;
+  bottom: -14px;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  background: rgba(0,0,0,0.2);
+  padding: 6px;
+  border-radius: 14px;
+  height: 14px;
+  line-height: 14px;
+  margin: 0;
+}
+
+.carousel ol li {
+  list-style: none;
+  padding: 0 5px;
+}
+
+.carousel ol li a {
+  display: block;
+  height: 10px;
+  width: 10px;
+  border: 2px solid white;
+  background: transparent;
+  border-radius: 100%;
+}
+
+.carousel ol li.selected a {
+  background: white;
+}
+
+.carousel .prev, .carousel .next {
+  user-select: none;
+  cursor: pointer;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9;
+  line-height: 32px;
+  background: rgba(0,0,0,0.2);
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bold;
+}
+
+.carousel .prev {
+  left: 0;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+.carousel .next {
+  right: 0;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
